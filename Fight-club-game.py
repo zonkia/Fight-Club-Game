@@ -94,9 +94,11 @@ while life > 0 and enemy_life > 0:
         enemy_life -= weapons_damage_now[weapon]
         if enemy_life < 0:
             enemy_life = 0
-            print("Zwycięstwo! Gratulacje!")
         time.sleep(2)
         print("Trafiłeś! Zabrałeś przeciwnikowi", weapons_damage_now[weapon], "punktów! Zostało mu", enemy_life, "życia")
+        if enemy_life == 0:
+            print("Zwycięstwo! Gratulacje!")
+            break
         time.sleep(2)
 
         # UNIK CIOSU PRZECIWNIKA
@@ -144,8 +146,10 @@ while life > 0 and enemy_life > 0:
             life -= enemies_damage_now[enemy]
             if life < 0:
                 life = 0
-                print("Nie żyjesz! Koniec gry")
             print("Dostałeś!", enemy, "zaatakował w swoje", attack , ",a Ty rzuciłeś się w swoje", direction_evade,  "i zabrał Tobie", enemies_damage_now[enemy], "punktów. Zostało Ci", life, "życia")
+            if life == 0:
+                print("Nie żyjesz! Koniec gry")  
+                break          
             time.sleep(3)
             print()
             turns += 1
@@ -180,7 +184,6 @@ while life > 0 and enemy_life > 0:
             direction_evade = attack_direction(directions)
             print("Nie zdążyłeś! W ostatniej chwili rzucasz się w", direction_evade)
 
-
         # PRZECIWNIK ATAKUJE
         attack = attack_direction(directions)
         # PRZELICZENIE USZKODZEŃ I SZANS NA TRAFIENIE NA BAZIE LOSOWANIA MOCY CIOSU
@@ -204,8 +207,10 @@ while life > 0 and enemy_life > 0:
             life -= enemies_damage_now[enemy]
             if life < 0:
                 life = 0
-                print("Nie żyjesz! Koniec gry")
             print("Dostałeś!", enemy, "zaatakował w swoje", attack, ", a Ty rzuciłeś się w swoje", direction_evade,  "i zabrał Tobie", enemies_damage_now[enemy], "punktów. Zostało Ci", life, "życia")
+            if life == 0:
+                print("Nie żyjesz! Koniec gry")
+                break
             time.sleep(3)
             print()
             turns += 1
